@@ -1,5 +1,5 @@
 module Mongoid
-  module Coauth
+  module Xoauth
     extend ActiveSupport::Concern
     included do
       index "oauths.uid" => 1, "oauths._type" => 1
@@ -14,7 +14,7 @@ module Mongoid
     end
 
     module ClassMethods
-      def coauth(params) # weibo_web/mobile: {appid, secret, callback}, qq: {key, secret}
+      def xoauth(params) # weibo_web/mobile: {appid, secret, callback}, qq: {key, secret}
         raise "invalid coauth params #{params.to_s}" unless params.is_a?(Hash)
         embeds_many :oauths, class_name: 'Oauth::Provider', as: :oauthable
         # config oauths

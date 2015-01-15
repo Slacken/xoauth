@@ -47,7 +47,7 @@ module Oauth
         if response # access_token=xxx&expires_in=7776000&refresh_token=xxx
           detail = Hash[response.split('&').map{|q| q.split('=')}]
           detail["created_at"] = Time.now
-          detail['uid'] = openid(detail["access_token"]
+          detail['uid'] = openid(detail["access_token"])
           if detail['uid']
             detail
           else

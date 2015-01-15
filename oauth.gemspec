@@ -4,7 +4,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'oauth/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "coauth"
+  spec.name          = "xoauth"
   spec.version       = Oauth::VERSION
   spec.authors       = ["binz"]
   spec.email         = ["xinkiang@gmail.com"]
