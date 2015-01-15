@@ -1,13 +1,8 @@
 module Oauth
   class QQ < Provider
-    def publish
-    end
     
     def fetch_info
       api_access('get_user_info')
-    end
-    
-    def follow
     end
 
     def api_access(api, http_params = {}, http_method = 'get')
