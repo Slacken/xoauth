@@ -1,4 +1,4 @@
-require 'mongoid'
+require 'mongoid/xoauth'
 
 module Oauth
   # Your code goes here...
