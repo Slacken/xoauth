@@ -1,3 +1,4 @@
+require 'mongoid'
 require 'mongoid/xoauth'
 
 module Oauth

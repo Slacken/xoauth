@@ -1,5 +1,4 @@
 require 'mongoid'
-require 'mongoid/xoauth'
 require 'oauth'
 
 class User
