@@ -7,7 +7,7 @@ Chinese Social network (weibo/qq/weixin currently) authentication with mongoid.
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'xoauth', :requre => 'oauth'
+gem 'xoauth', :require => 'oauth'
 ```
 
 And then execute:
