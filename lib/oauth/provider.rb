@@ -1,5 +1,4 @@
 require 'net/http'
-require 'net/https'
 require 'uri'
 require 'json'
 
@@ -40,13 +39,12 @@ module Oauth
 
       def request(url, request_params, method = 'get', format = nil)
         uri = URI(url)
-        klass = (uri.scheme == 'https' ? Net::HTTPS : Net::HTTP)
         begin
           if method == 'get'
             uri.query = (uri.query.nil? ? '' : (uri.query + "&")) + URI.encode_www_form(request_params)
-            response = klass.get_response(uri)
+            response = Net::HTTP.get_response(uri)
           else
-            response = klass.post_form(uri, request_params)
+            response = Net::HTTP.post_form(uri, request_params)
           end
         rescue Exception => e
           puts e.message

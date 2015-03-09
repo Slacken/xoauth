@@ -39,13 +39,13 @@ module Oauth
         end
       end
 
-      def authorize_url
+      def authorize_url(params = {})
         get_params = {
           'client_id' => Configure['weibo']['appid'],
           'redirect_uri' => Configure['weibo']['callback'],
           'response_type' => 'code',
           'display' => 'default' # for different divice, default|mobile|wap|client|apponweibo
-        }
+        }.merge(params)
         "https://api.weibo.com/oauth2/authorize?#{URI.encode_www_form(get_params)}";
       end
 

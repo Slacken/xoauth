@@ -24,14 +24,14 @@ module Oauth
         end
       end
 
-      def authorize_url
+      def authorize_url(params = {})
         get_params = {
           response_type: 'code',
           client_id: Configure['qq']['appid'],
           redirect_uri: Configure['qq']['callback'],
           state: 1,
           scope: 'get_user_info,get_info,do_like'
-        }
+        }.merge(params)
         "https://graph.qq.com/oauth2.0/authorize?#{URI.encode_www_form(get_params)}"
       end
 
