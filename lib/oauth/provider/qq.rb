@@ -5,6 +5,16 @@ module Oauth
       api_access('get_user_info')
     end
 
+    def basic_info
+      info && {
+        "name" => info.data["name"],
+        "avatar" => info.data["avatar_hd"] || info.data["avatar_large"],
+        "gender" => info.data["gender"],
+        "location" => info.data["location"],
+        "description" => info.data["description"]
+      }
+    end
+
     def api_access(api, http_params = {}, http_method = 'get')
       url = 'https://graph.qq.com/user/' + api
       http_params.merge!({"access_token" => access_token, "openid"=> uid, "oauth_consumer_key" => Configure['qq']['appid']})

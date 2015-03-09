@@ -17,8 +17,8 @@ module Mongoid
       end
     end
 
-    def find_by_oauth_uid(uid, klass)
-      where('oauths.uid' => uid.to_s, 'oauths._type' => klass.to_s).first
+    def find_by_oauth(oauth)
+      where('oauths.uid' => oauth.uid, 'oauths._type' => oauth.class.to_s).first
     end
 
     def oauth(klass)

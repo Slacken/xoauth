@@ -13,6 +13,16 @@ module Oauth
       api_access('users/show',{'uid' => uid})
     end
 
+    def basic_info
+      info && {
+        "name" => info.data["name"],
+        "avatar" => info.data["avatar_hd"] || info.data["avatar_large"],
+        "gender" => info.data["gender"],
+        "location" => info.data["location"],
+        "description" => info.data["description"]
+      }
+    end
+
     def api_access(api, http_params, http_method = 'get')
       return nil if expired? # expired
       url = 'https://api.weibo.com/2/' + api + '.json'
