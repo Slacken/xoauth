@@ -1,9 +1,8 @@
 module Oauth
   class Weibo < Provider
 
-    def follow(uid = nil)
-      uid = Configure['weibo']['official'] if uid.nil?
-      api_access('friendships/create', {'uid'=> uid}, 'post')
+    def follow(uid)
+      api_access('friendships/create', {'uid' => uid}, 'post')
     end
 
     def publish(content)

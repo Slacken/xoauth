@@ -18,7 +18,7 @@ module Oauth
       return nil if expired?
       info = fetch_info
       if info
-        self.info = Info.new(data: info)
+        self.info = Oauth::Info.new(data: info)
         self.save
       end
       self.info
