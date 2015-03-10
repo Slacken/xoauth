@@ -7,4 +7,5 @@ end
 
 require "oauth/version"
 require "oauth/provider"
+require "oauth/info"
 require "oauth/configure"
