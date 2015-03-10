@@ -56,7 +56,6 @@ module Oauth
         response = getJSON('https://graph.qq.com/oauth2.0/token', get_params)
         if response # access_token=xxx&expires_in=7776000&refresh_token=xxx
           detail = Hash[response.split('&').map{|q| q.split('=')}]
-          detail["created_at"] = Time.now
           detail['uid'] = openid(detail["access_token"])
           if detail['uid']
             detail

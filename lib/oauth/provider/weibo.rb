@@ -68,10 +68,7 @@ module Oauth
           'redirect_uri' => Configure['weibo']['callback']
         }
         response = postJSON(url,post_params)
-        if response
-          response["created_at"] = Time.now
-          response.delete('remind_in')
-        end
+        response.delete('remind_in') if response
         response
       end
     end

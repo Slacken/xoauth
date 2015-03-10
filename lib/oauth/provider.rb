@@ -7,21 +7,17 @@ module Oauth
     include Mongoid::Document
     field :access_token
     field :uid, type: String
-    field :created_at, type: Time
+    field :created_at, type: Time, default: ->{ Time.now }
     field :expires_in, type: Integer
     field :refresh_token
 
     embedded_in :oauthable, polymorphic: true, inverse_of: :oauth
-    has_one :info, class_name: 'Oauth::Info', inverse_of: :oauth
+    belongs_to :info, class_name: 'Oauth::Info', inverse_of: :oauth
 
     def fetch_info!
       return nil if expired?
       info = fetch_info
-      if info
-        self.info = Oauth::Info.new(data: info)
-        self.save
-      end
-      self.info
+      info && self.info = Oauth::Info.create(data: info)
     end
 
     def expired?
