@@ -1,5 +1,5 @@
 module Oauth
-  class QQ < Provider
+  class Qq < Provider
     
     def fetch_info
       api_access('get_user_info')
@@ -18,7 +18,7 @@ module Oauth
     def api_access(api, http_params = {}, http_method = 'get')
       url = 'https://graph.qq.com/user/' + api
       http_params.merge!({"access_token" => access_token, "openid"=> uid, "oauth_consumer_key" => Configure['qq']['appid']})
-      Oauth::QQ.request(url, http_params, http_method, 'json')
+      Oauth::Qq.request(url, http_params, http_method, 'json')
     end
 
     class << self
@@ -69,5 +69,5 @@ module Oauth
     end
 
   end
-  class QQMobile < QQ; end
+  class QqMobile < Qq; end
 end
