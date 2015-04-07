@@ -7,11 +7,11 @@ module Oauth
 
     def basic_info
       info && {
-        "name" => info.data["name"],
-        "avatar" => info.data["avatar_hd"] || info.data["avatar_large"],
-        "gender" => info.data["gender"],
-        "location" => info.data["location"],
-        "description" => info.data["description"]
+        "name" => info.data["nickname"],
+        "avatar" => info.data["figureurl_2"],
+        "gender" => (info.data["gender"] == '女' ? 0 : 1),
+        "location" => info.data["city"],
+        "description" => nil
       }
     end
 
@@ -53,7 +53,7 @@ module Oauth
           code: code,
           redirect_uri: Configure['qq']['callback']
         }
-        response = getJSON('https://graph.qq.com/oauth2.0/token', get_params)
+        response = get('https://graph.qq.com/oauth2.0/token', get_params)
         if response # access_token=xxx&expires_in=7776000&refresh_token=xxx
           detail = Hash[response.split('&').map{|q| q.split('=')}]
           detail['uid'] = openid(detail["access_token"])
